@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="plugin.video.xvideos"
+version="1.0"
+name="Xvideos"
+provider-name="Lord Grey">
+<requires>
+  <import addon="xbmc.python" version="2.26.0"/>
+  <import addon="script.module.beautifulsoup4" version="4.5.3"/> 
+  <import addon="script.module.requests" version="2.19.1"/>  
+</requires>
+<extension point="xbmc.python.pluginsource" library="main.py">
+  <provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+  <summary lang="en">XVIDEOS.com Plugin for Kodi</summary>
+  <description lang="en_GB">A plugin to watch Xviedeos Content in Kodi</description>
+  <disclaimer lang="en_GB">Videos are provided by www.xvideos.com.</disclaimer>
+  <assets>
+    <icon>icon.png</icon>
+    <fanart>fanart.jpg</fanart>
+  </assets>
+  <news>Updated with latest artwork metadata</news>
+</extension>
+</addon>
