@@ -33,12 +33,6 @@ if __name__ == '__main__':
     #           1st Start           #
     #################################
     if params == {}:
-        # Catergorys
-        list_item = xbmcgui.ListItem(label='Categories')
-        url = helper.get_url(_url, action='category')
-        is_folder = True
-        xbmcplugin.addDirectoryItem(_handle, url, list_item, is_folder)
-
         # Search
         list_item = xbmcgui.ListItem(label='Search')
         url = helper.get_url(_url, action='search')
@@ -47,16 +41,6 @@ if __name__ == '__main__':
 
         # endOfDirectory
         xbmcplugin.endOfDirectory(_handle)
-        quit()
-
-    #################################
-    #           listing             #
-    #################################
-    if params['action'] == 'listing':
-        # Display the list of videos in a provided category.
-        videos = xvideos.get_vids(params['link'], params['category'])
-        has_next = False
-        helper.list_videos(_handle, _url, videos, params['link'], params['category'], has_next)
         quit()
 
     #################################
@@ -72,18 +56,27 @@ if __name__ == '__main__':
     #################################
     if params['action'] == 'search':
         s_therm = helper.get_search()
-        link = 'https://www.xvideos.com/?k=' + s_therm
+        dialog = xbmcgui.Dialog()
+        ret = dialog.select('Search by', ['Relevance', 'Upload Date', 'Raiting', 'Length', 'Views'])
+       
+            
+        if ret == 0:
+            sort = '&sort=relevance'
+        if ret == 1:
+            sort = '&sort=uploaddate'
+        if ret == 2:
+            sort = '&sort=raiting'
+        if ret == 3:
+            sort = '&sort=length'
+        if ret == 4:
+            sort = '&sort=views'
+
+        link = 'https://www.xvideos.com/?k=' + s_therm + sort
+
+
         videos = xvideos.get_vids(link, 'search')
         has_next = True
         helper.list_videos(_handle, _url, videos, link, 'search', has_next)
-        quit()
-
-    #################################
-    #            category           #
-    #################################
-    if params['action'] == 'category':
-        categories = xvideos.get_cats()
-        helper.list_categories(_url, _handle, categories)
         quit()
 
     #################################

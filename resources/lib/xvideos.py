@@ -8,31 +8,6 @@ import xbmcplugin
 import resources.lib.helper as helper
 
 #################################
-#			get_cats			#
-#################################
-'''
-crawls the Catergorys from xvideos.com
-and returns them as a list of dicts
-
-[{'category': 'Pornos auf Deutsch', 'link': 'https://xvideos.com/lang/deutsch'}, 
- {'category': '3d', 'link': 'https://xvideos.com/?k=3d&top'}]
-'''
-def get_cats():
-	url = 'https://xvideos.com/'
-	cats = []
-	soup = helper.get_soup(url)
-	divs = soup.find(id="main-cat-sub-list")
-
-	for div in divs.find_all('a', href=True): 
-		cats.append(
-			dict([
-				('category', div.text.lstrip(' ')),
-				('link', url[:-1] + div.get('href'))
-			]))
-
-	return cats
-
-#################################
 #			get_vids			#
 #################################
 '''
