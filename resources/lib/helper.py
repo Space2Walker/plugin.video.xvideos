@@ -74,7 +74,7 @@ def get_search():
         return(search_term)
     else:
         return
-        
+
 #################################
 #           list_videos         #
 #################################
@@ -137,6 +137,6 @@ def list_videos(_handle, _url, videos, link, category, next, page=1):
         xbmcplugin.addDirectoryItem(_handle, url, list_item, is_folder)
 
     # Add sort methods for the virtual folder items 
-    xbmcplugin.addSortMethod(_handle, xbmcplugin.SORT_METHOD_SORT_METHOD_UNSORTED)
+    xbmcplugin.addSortMethod(_handle, xbmcplugin.SORT_METHOD_UNSORTED)
     # Finish creating a virtual folder.
     xbmcplugin.endOfDirectory(_handle)

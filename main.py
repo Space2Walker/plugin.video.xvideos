@@ -58,7 +58,6 @@ if __name__ == '__main__':
         s_therm = helper.get_search()
         dialog = xbmcgui.Dialog()
         ret = dialog.select('Search by', ['Relevance', 'Upload Date', 'Raiting', 'Length', 'Views'])
-       
             
         if ret == 0:
             sort = '&sort=relevance'
@@ -72,10 +71,9 @@ if __name__ == '__main__':
             sort = '&sort=views'
 
         link = 'https://www.xvideos.com/?k=' + s_therm + sort
-
-
         videos = xvideos.get_vids(link, 'search')
         has_next = True
+
         helper.list_videos(_handle, _url, videos, link, 'search', has_next)
         quit()
 

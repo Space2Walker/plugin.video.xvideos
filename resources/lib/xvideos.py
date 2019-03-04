@@ -33,41 +33,27 @@ def get_vids(url, category='none'):
 	videos = [] 
 	soup = helper.get_soup(url)
 
-	#####################
-	# get the video div and make a dict from both divs inside
-
-	video_div = soup.find_all("div", class_="thumb-block")
-
-	for video in video_div: 
-	
-		videos.append( 
-			dict([('under', video.find("div", class_="thumb-under")),
-				('inside', video.find("div", class_="thumb-inside"))
-				]))
-
-	############################################
-	# get the infos from the dict and make the final info dict
+	videos = soup.find_all("div", class_="thumb-block")
 
 	for info in videos:
-    
-		inside = info['inside']
-		under = info['under']
+		under = info.find("div", class_="thumb-under")
 
 		title = under.find("a", href=True)
 		duration = helper.convert_duration(under.find("span", class_="duration").text)
 		views = under.find("span", class_="sprfluous").nextSibling
 
-		
-		try:
+		try:		# sometimes there is no uploader
 			uploader = under.find("span", class_="name").text
 		except AttributeError:
 			views = under.find("span", class_="duration").nextSibling
 			uploader = "Unknown"
 	
+		inside = info.find("div", class_="thumb-inside")
+
 		img = inside.find("div", class_="thumb").find('img')
 		res_tag = inside.find(class_="video-hd-mark")
 
-		try:
+		try:		# sometimes there is no resolution tag
 			res = res_tag.text
 		except AttributeError:
 			res = ''
