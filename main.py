@@ -56,6 +56,10 @@ if __name__ == '__main__':
     #################################
     if params['action'] == 'search':
         s_therm = helper.get_search()
+        
+        if s_therm == None:
+            quit()
+            
         dialog = xbmcgui.Dialog()
         ret = dialog.select('Search by', ['Relevance', 'Upload Date', 'Raiting', 'Length', 'Views'])
             
