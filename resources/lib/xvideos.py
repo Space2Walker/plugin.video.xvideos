@@ -34,6 +34,12 @@ def get_vids(url, category='none'):
 	soup = helper.get_soup(url)
 
 	videos = soup.find_all("div", class_="thumb-block")
+	page_lis = soup.find("div", class_="pagination").find_all('li') 
+
+	if page_lis[-1].a.text == "Next":
+		page = page_lis[-2].a.text
+	else:
+		page = page_lis[-1].a.text
 
 	for info in videos:
 		under = info.find("div", class_="thumb-under")
@@ -67,7 +73,8 @@ def get_vids(url, category='none'):
 				('res', res),
 				('views', views[1:]),
 				('uploader', uploader),
-				('category', category)
+				('category', category),
+				('page', page)
 				]))
 	return video_info
 

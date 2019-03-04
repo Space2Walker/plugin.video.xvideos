@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addon id="plugin.video.xvideos"
-version="1.0"
+version="1.1"
 name="Xvideos"
 provider-name="Lord Grey">
 <requires>
@@ -19,6 +19,11 @@ provider-name="Lord Grey">
     <icon>icon.png</icon>
     <fanart>fanart.jpg</fanart>
   </assets>
-  <news>Updated with latest artwork metadata</news>
+  <news>
+    Now with "Search By"
+    Next now only shows up is a next site is there
+    and its at the bottom of the list.
+    Categorys are removed for Now.
+  </news>
 </extension>
 </addon>

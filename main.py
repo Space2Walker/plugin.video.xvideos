@@ -59,7 +59,7 @@ if __name__ == '__main__':
         
         if s_therm == None:
             quit()
-            
+
         dialog = xbmcgui.Dialog()
         ret = dialog.select('Search by', ['Relevance', 'Upload Date', 'Raiting', 'Length', 'Views'])
             
@@ -94,7 +94,12 @@ if __name__ == '__main__':
     
         page = int(params['page']) + 1
         videos = xvideos.get_vids(url, params['category'])
-        has_next = True
+
+        if int(videos[0]['page']) == page:
+            has_next = False
+        else:
+            has_next = True
+
         helper.list_videos(_handle, _url, videos, url, params['category'], has_next, page )
         quit()
 
