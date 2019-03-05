@@ -26,20 +26,20 @@ def get_vids(url, category='none'):
         page = page_lis[-1].a.text
 
     for info in videos:
-    	inside = info.find("div", class_="thumb-inside")
+        inside = info.find("div", class_="thumb-inside")
         under = info.find("div", class_="thumb-under")
         title = under.find("a", href=True)
         img = inside.find("div", class_="thumb").find('img')
         res_tag = inside.find(class_="video-hd-mark")
         views = under.find("span", class_="sprfluous").nextSibling
         duration = helper.convert_duration(
-        	under.find("span", class_="duration").text)
+            under.find("span", class_="duration").text)
 
         # sometimes there is no uploader
         try:
             uploader = under.find("span", class_="name").text
         except AttributeError:
-        	# Is no Uploader there, the views are difrent also
+            # Is no Uploader there, the views are difrent also
             views = under.find("span", class_="duration").nextSibling
             uploader = "Unknown"
 
