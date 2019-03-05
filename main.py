@@ -17,8 +17,9 @@ _url = sys.argv[0]
 _handle = int(sys.argv[1])
 
 if __name__ == '__main__':
-    
-    # We use string slicing to trim the leading '?' from the plugin call paramstring
+
+    # We use string slicing to trim the leading '?'
+    # from the plugin call paramstring
     paramstring = sys.argv[2][1:]
 
     # Parse a URL-encoded paramstring to the dictionary of
@@ -26,8 +27,8 @@ if __name__ == '__main__':
     params = dict(parse_qsl(paramstring))
     #xbmc.log(str(params),level=xbmc.LOGNOTICE)
 
-    # Check the parameters passed to the plugin give new and restart 
-    # quit() is needed at the end of each if 
+    # Check the parameters passed to the plugin give new and restart
+    # quit() is needed at the end of each if
 
     #################################
     #           1st Start           #
@@ -56,13 +57,15 @@ if __name__ == '__main__':
     #################################
     if params['action'] == 'search':
         s_therm = helper.get_search()
-        
+
         if s_therm == None:
             quit()
 
         dialog = xbmcgui.Dialog()
-        ret = dialog.select('Search by', ['Relevance', 'Upload Date', 'Raiting', 'Length', 'Views'])
-            
+        ret = dialog.select('Search by',
+                            ['Relevance', 'Upload Date',
+                             'Raiting', 'Length', 'Views'])
+
         if ret == 0:
             sort = '&sort=relevance'
         if ret == 1:
@@ -78,7 +81,8 @@ if __name__ == '__main__':
         videos = xvideos.get_vids(link, 'search')
         has_next = True
 
-        helper.list_videos(_handle, _url, videos, link, 'search', has_next)
+        helper.list_videos(_handle, _url, videos,
+                           link, 'search', has_next)
         quit()
 
     #################################
@@ -86,12 +90,12 @@ if __name__ == '__main__':
     #################################
     if params['action'] == 'next':
         # ads a &p= at first and raises the page number every call
-  
+
         if params['page'] == '1':
             url = params['link'] + '&p=' + str(params['page'])
-        else:     
+        else:
             url = params['link'] + str(params['page'])
-    
+
         page = int(params['page']) + 1
         videos = xvideos.get_vids(url, params['category'])
 
@@ -100,7 +104,8 @@ if __name__ == '__main__':
         else:
             has_next = True
 
-        helper.list_videos(_handle, _url, videos, url, params['category'], has_next, page )
+        helper.list_videos(_handle, _url, videos, url,
+                           params['category'], has_next, page )
         quit()
 
     #################################

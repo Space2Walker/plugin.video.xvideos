@@ -13,13 +13,11 @@ from bs4 import BeautifulSoup
 #################################
 #           get_soup            #
 #################################
-# takes a url and makes a soup 
-
+# takes a url and makes a soup
 def get_soup(url):
     req = requests.get(url)
     soup = BeautifulSoup(req.text, "html.parser")
     req.close()
-
     return soup
 
 #################################
@@ -42,12 +40,12 @@ def convert_duration(duration):
         duration = int(duration[:-4])
         return duration #in seconds
 
-
 #################################
 #           get_url             #
 #################################
 '''
-Create a URL for calling the plugin recursively from the given set of keyword arguments.
+Create a URL for calling the plugin recursively from the given set of
+keyword arguments.
 
 :param kwargs: "argument=value" pairs
 :type kwargs: dict
@@ -88,57 +86,50 @@ def list_videos(_handle, _url, videos, link, category, next, page=1):
     # Set plugin content. It allows Kodi to select appropriate views
     # for this type of content.
     xbmcplugin.setContent(_handle, 'videos')
-    
 
     # Iterate through videos.
     for video in videos:
         #set resolution Tag if res is available
-        if video['res'] != '':
-            title = '[' + video['res'] + '] ' + video['title'] 
-
+        if video['res'] is not None:
+            title = '[' + video['res'] + '] ' + video['title']
         else:
             title = video['title']
 
-        # Create a list item with a text label and a thumbnail image.
+        # Create a list item with a text label
         list_item = xbmcgui.ListItem(label=title)
         # builduing the description from views and uploader
-        plot = "Views: " + str(video['views']) + "\nUploader: " + str(video['uploader'])
+        plot = "Views: " + video['views'] + "\nUploader: "+ video['uploader']
         # Set additional info for the list item.
-        # 'mediatype' is needed for skin to display info for this ListItem correctly.
-        list_item.setInfo('video', {'title': title, 
+        # 'mediatype' is needed for skin to display info correctly.
+        list_item.setInfo('video', {'title': title,
                                     'sorttitle': video['title'],
                                     'duration': video['duration'],
                                     'plot': plot,
                                     'mediatype': 'video'})
-        # Set graphics (thumbnail, fanart, banner, poster, landscape etc.) for the list item.
-        # Here we use the same image for all items for simplicity's sake.
-        list_item.setArt({'thumb': video['thumb'], 'icon': video['thumb'], 'poster': video['thumb'], 'fanart': video['thumb']})
-        # Set 'IsPlayable' property to 'true'.
-        # This is mandatory for playable items!
+        # Set graphics (thumbnail, fanart, etc.) for the list item.
+        list_item.setArt({'thumb': video['thumb'],
+                          'icon': video['thumb'],
+                          'poster': video['thumb'],
+                          'fanart': video['thumb']})
+
         list_item.setProperty('IsPlayable', 'true')
         # Create a URL for a plugin recursive call.
-        # Example: plugin://plugin.video.example/?action=play&video=http://www.vidsplay.com/wp-content/uploads/2017/04/crab.mp4
+        # Example: plugin://plugin.video.example/?action=play&video=url
         url = get_url(_url, action='play', video=video['link'])
-        # Add the list item to a virtual Kodi folder.
-        # is_folder = False means that this item won't open any sub-list.
         is_folder = False
+
         # Add our item to the Kodi virtual folder listing.
         xbmcplugin.addDirectoryItem(_handle, url, list_item, is_folder)
 
-    ##############################################
-    #                Next
-    if next == True:
+    if next is True:
+        # Add the next button to the end of list
         list_item = xbmcgui.ListItem(label='Next')
-    
-        url = get_url(_url, action='next', link=link, page=page ,category=category)
-        # is_folder = True means that this item opens a sub-list of lower level items.
+        url = get_url(_url, action='next',
+                      link=link, page=page ,category=category)
         is_folder = True
-
         xbmcplugin.addDirectoryItem(_handle, url, list_item, is_folder)
-    #
-    #############################################
-    
-    # Add sort methods for the virtual folder items 
+
+    # Add sort methods for the virtual folder items
     xbmcplugin.addSortMethod(_handle, xbmcplugin.SORT_METHOD_UNSORTED)
     # Finish creating a virtual folder.
     xbmcplugin.endOfDirectory(_handle)
