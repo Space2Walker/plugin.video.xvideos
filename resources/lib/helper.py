@@ -27,7 +27,6 @@ def get_soup(url):
 def convert_duration(duration):
     if duration.find("h") != -1:  #
         h = int(duration[0])
-        inta = duration[4:-4]
         minute = int(duration[4:-4]) + (h * 60)
         duration = minute * 60
         return duration #in seconds
@@ -76,10 +75,9 @@ def get_search():
 #################################
 #           list_videos         #
 #################################
-'''
-Create the list of playable videos in the Kodi interface.
-'''
-def list_videos(_handle, _url, videos, link, category, next, page=1):
+#Create the list of playable videos in the Kodi interface.
+
+def list_videos(_handle, _url, videos, link, category, has_next, page=1):
     # Set plugin category. It is displayed in some skins as the name
     # of the current section.
     xbmcplugin.setPluginCategory(_handle, category)
@@ -121,7 +119,7 @@ def list_videos(_handle, _url, videos, link, category, next, page=1):
         # Add our item to the Kodi virtual folder listing.
         xbmcplugin.addDirectoryItem(_handle, url, list_item, is_folder)
 
-    if next is True:
+    if has_next is True:
         # Add the next button to the end of list
         list_item = xbmcgui.ListItem(label='Next')
         url = get_url(_url, action='next',
