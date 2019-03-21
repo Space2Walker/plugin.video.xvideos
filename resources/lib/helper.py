@@ -42,15 +42,14 @@ def convert_duration(duration):
 #################################
 #           get_url             #
 #################################
-'''
-Create a URL for calling the plugin recursively from the given set of
+''' Create a URL for calling the plugin recursively from the given set of
 keyword arguments.
 
 :param kwargs: "argument=value" pairs
 :type kwargs: dict
 :return: plugin call URL
-:rtype: str
-'''
+:rtype: str '''
+
 def get_url(_url, **kwargs):
    return '{0}?{1}'.format(_url, urlencode(kwargs))
 
