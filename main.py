@@ -8,7 +8,11 @@ import xbmcgui
 import xbmcplugin
 import resources.lib.xvideos as xvideos
 import resources.lib.helper as helper
-from urlparse import parse_qsl
+
+try:
+    from urllib2 import urlparse
+except ImportError:
+    import urllib.parse as urlparse
 
 # Get the plugin url in plugin:// notation.
 _url = sys.argv[0]
@@ -24,7 +28,7 @@ if __name__ == '__main__':
 
     # Parse a URL-encoded paramstring to the dictionary of
     # {<parameter>: <value>} elements
-    params = dict(parse_qsl(paramstring))
+    params = dict(urlparse.parse_qsl(paramstring))
     #xbmc.log(str(params),level=xbmc.LOGNOTICE)
 
     # Check the parameters passed to the plugin give new and restart

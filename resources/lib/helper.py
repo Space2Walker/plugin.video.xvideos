@@ -3,11 +3,11 @@
 # Created : 01.03.2019
 # License: GPL v.3 https://www.gnu.org/copyleft/gpl.html
 
+import urllib
 import xbmc
 import xbmcgui
 import xbmcplugin
 import requests
-from urllib import urlencode
 from bs4 import BeautifulSoup
 
 #################################
@@ -51,7 +51,7 @@ keyword arguments.
 :rtype: str '''
 
 def get_url(_url, **kwargs):
-   return '{0}?{1}'.format(_url, urlencode(kwargs))
+   return '{0}?{1}'.format(_url, urllib.urlencode(kwargs))
 
 
 #################################
