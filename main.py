@@ -29,7 +29,7 @@ if __name__ == '__main__':
     # Parse a URL-encoded paramstring to the dictionary of
     # {<parameter>: <value>} elements
     params = dict(urlparse.parse_qsl(paramstring))
-    #xbmc.log(str(params),level=xbmc.LOGNOTICE)
+    # xbmc.log(str(params),level=xbmc.LOGNOTICE)
 
     # Check the parameters passed to the plugin give new and restart
     # quit() is needed at the end of each if
@@ -109,7 +109,7 @@ if __name__ == '__main__':
             has_next = True
 
         helper.list_videos(_handle, _url, videos, url,
-                           params['category'], has_next, page )
+                           params['category'], has_next, page)
         quit()
 
     #################################

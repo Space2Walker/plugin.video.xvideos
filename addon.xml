@@ -17,7 +17,7 @@ provider-name="Lord Grey">
 </extension>
 <extension point="xbmc.addon.metadata">
   <summary lang="en">XVIDEOS.com Plugin for Kodi</summary>
-  <description lang="en_GB">A plugin to watch Xviedeos Content in Kodi</description>
+  <description lang="en_GB">A plugin to watch Xvideos Content in Kodi</description>
   <disclaimer lang="en_GB">
     Videos are provided by www.xvideos.com.
   </disclaimer>
