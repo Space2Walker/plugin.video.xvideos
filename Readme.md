@@ -1,6 +1,5 @@
 # Simple plugin for Kodi mediacenter that plays Videos from xvideos.com
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2f879390d9fa460ab5defbed7ab2ea3d)](https://www.codacy.com/app/Space2Walker/plugin.video.xvideos?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Space2Walker/plugin.video.xvideos&amp;utm_campaign=Badge_Grade)
-[![Build Status](https://travis-ci.com/Space2Walker/plugin.video.xvideos.svg?branch=master)](https://travis-ci.com/Space2Walker/plugin.video.xvideos)
+![](https://github.com/Space2Walker/plugin.program.xvideos/workflows/Kodi-Addon-Check/badge.svg)
 This is a simple yet fully functional video plugin for [Kodi](http://kodi.tv) mediacenter.
 Please read the comments in the plugin code for more details.
 An installable .zip can be downloaded from "[Releases](https://github.com/space2walker/plugin.video.xvideos/releases)" tab.
