@@ -1,4 +1,5 @@
 # Simple plugin for Kodi mediacenter that plays Videos from xvideos.com
+
 ![](https://github.com/Space2Walker/plugin.program.xvideos/workflows/Kodi-Addon-Check/badge.svg)
 This is a simple yet fully functional video plugin for [Kodi](http://kodi.tv) mediacenter.
 Please read the comments in the plugin code for more details.
