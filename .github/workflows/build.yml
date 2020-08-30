@@ -4,7 +4,7 @@ name: Kodi-Addon-Check
 on:
   push:
     branches:
-      - leia
+      - master
 
 jobs:
   test:
